@@ -1,0 +1,13 @@
+{
+  "units": [    
+    {
+      "chassis": "Atlas",
+      "variant": "AS7-CUSTOM",
+      "type": "BM",
+      "techbase": "Inner Sphere",
+      "tonnage": 100,
+      "bv": 2154,
+      "filename": "sheets/Atlas_AS7-CUSTOM.mtf"
+    }
+  ]
+}

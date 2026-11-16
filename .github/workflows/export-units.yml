@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Get the repo
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -66,5 +68,12 @@ jobs:
             echo "Nothing changed."
           else
             git commit -m "Auto-export units for MekBay"
-            git push
+            # If you committed something else while this ran, catch up and retry
+            for i in 1 2 3 4 5; do
+              git push && exit 0
+              echo "Push rejected, catching up with main and retrying..."
+              git pull --rebase -X theirs origin main
+              sleep 3
+            done
+            echo "Could not push after 5 tries"; exit 1
           fi

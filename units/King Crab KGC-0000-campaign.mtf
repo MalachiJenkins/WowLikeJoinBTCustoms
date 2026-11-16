@@ -1,7 +1,7 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-16
 chassis:King Crab
-model:KGC-0000
-mul id:1771
+model:KGC-0000 Campaign
+
 
 Config:Biped
 techbase:Inner Sphere

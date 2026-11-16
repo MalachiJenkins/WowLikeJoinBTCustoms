@@ -1,7 +1,7 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-16
 chassis:Quickdraw
-model:QKD-5M
-mul id:2614
+model:QKD-5M Campaign
+
 
 Config:Biped
 techbase:Inner Sphere

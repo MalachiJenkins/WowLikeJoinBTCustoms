@@ -1,0 +1,70 @@
+name: Export units for MekBay
+
+# Runs whenever a file in the units/ folder is added, changed, or deleted.
+# You can also run it by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "units/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: export-units
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Cache the exporter
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: exporter
+          key: svgexporter-0.51.01
+
+      - name: Download the exporter
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p exporter
+          curl -sL -o exporter.tar.gz https://github.com/pavelbraginskiy/mekbay-customs-sample/releases/download/svgexporter/MegaMekLab-SVGMassPrinter-0.51.01.tar.gz
+          tar -xzf exporter.tar.gz -C exporter
+          rm exporter.tar.gz
+
+      - name: Run the export
+        run: |
+          chmod +x exporter/MegaMekLab-SVGMassPrinter/bin/svgmassprinter
+          rm -rf "$RUNNER_TEMP/out"
+          cd exporter/MegaMekLab-SVGMassPrinter
+          ./bin/svgmassprinter --skip-equipment --units "$GITHUB_WORKSPACE/units" -o "$RUNNER_TEMP/out"
+          test -f "$RUNNER_TEMP/out/units.json" || { echo "Export failed, no units.json made"; exit 1; }
+
+      - name: Replace the old export
+        run: |
+          rm -rf sheets units.json units-fluff.json quirks.json
+          cp -R "$RUNNER_TEMP/out/." .
+
+      - name: Save the changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sheets units.json units-fluff.json quirks.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Auto-export units for MekBay"
+            git push
+          fi

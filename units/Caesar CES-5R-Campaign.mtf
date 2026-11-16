@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-10-19
 chassis:Caesar
 model:CES-5R Campaign
-mul id:9321
 
 Config:Biped
 techbase:Inner Sphere

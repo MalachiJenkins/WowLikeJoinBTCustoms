@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-17
 chassis:Pillager
-model:PLG-3Z
-mul id:2525
+model:PLG-3Z campaign
 
 Config:Biped
 techbase:Inner Sphere

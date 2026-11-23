@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-23
 chassis:Banshee
-model:BNC-3S
-mul id:245
+model:BNC-3S Campaign
 
 Config:Biped
 techbase:Inner Sphere

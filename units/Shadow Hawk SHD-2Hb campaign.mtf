@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-23
 chassis:Shadow Hawk
-model:SHD-2Hb
-mul id:2902
+model:SHD-2Hb campaign
 
 Config:Biped
 techbase:Inner Sphere

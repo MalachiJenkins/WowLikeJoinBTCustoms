@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-23
 chassis:Whitworth
-model:WTH-1
-mul id:3538
+model:WTH-1 campaign
 
 Config:Biped
 techbase:Inner Sphere

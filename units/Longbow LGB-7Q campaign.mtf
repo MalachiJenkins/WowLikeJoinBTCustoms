@@ -1,7 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-23
 chassis:Longbow
-model:LGB-7Q
-mul id:1936
+model:LGB-7Q campaign
 
 Config:Biped
 techbase:Inner Sphere

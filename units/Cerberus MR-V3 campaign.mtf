@@ -1,6 +1,6 @@
 generator:MegaMek Suite 0.51.00 on 2026-11-23
-chassis:Cerberus
-model:MR-V3
+chassis:Cerberus campaign
+
 
 Config:Biped
 techbase:Inner Sphere
